@@ -68,3 +68,19 @@ export function buildCategories(data) {
     filters.appendChild(button);
   }
 }
+
+// Ecoute et application des filtres
+
+export function categoriesFilters(data) {
+  filters.addEventListener("click", (e) => {
+    const btnId = e.target.id;
+
+    const filteredElements =
+      btnId === "0"
+        ? data
+        : data.filter((item) => item.categoryId.toString() === btnId);
+
+    gallery.innerHTML = "";
+    buildGallery(filteredElements);
+  });
+}
