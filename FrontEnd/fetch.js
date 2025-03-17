@@ -9,3 +9,15 @@ export async function getDataGallery() {
   }
   return r.json();
 }
+
+/**
+ * Récupération des catégories
+ * @returns {Promise}
+ */
+export async function getDataCategories() {
+  const r = await fetch("http://localhost:5678/api/categories");
+  if (!r.ok) {
+    throw new Error(`Erreur HTTP ! Statut : ${r.status}`);
+  }
+  return r.json();
+}
