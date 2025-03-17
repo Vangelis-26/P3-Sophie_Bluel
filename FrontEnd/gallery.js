@@ -1,3 +1,7 @@
+//////////////////
+///  Gallery   ///
+//////////////////
+
 /**
  * @typedef {object} Category
  * @property {number} id
@@ -17,9 +21,10 @@
  * Création de la structure HTML de la Gallery
  * @param {Works[]} data
  */
-export function buildGallery(data) {
-  const gallery = document.querySelector(".gallery");
 
+const gallery = document.querySelector(".gallery");
+
+export function buildGallery(data) {
   for (const item of data) {
     const figure = document.createElement("figure");
     const img = document.createElement("img");
@@ -32,5 +37,34 @@ export function buildGallery(data) {
     gallery.appendChild(figure);
     figure.appendChild(img);
     figure.appendChild(figcaption);
+  }
+}
+
+///////////////////
+///   Filtres   ///
+///////////////////
+
+/**
+ * @typedef {object} Category
+ * @property {number} id
+ * @property {string} name
+ */
+
+const filters = document.querySelector(".categories");
+
+// Création des filtres
+export function buildCategories(data) {
+  const btnAll = document.createElement("button");
+  btnAll.textContent = "Tout";
+  btnAll.id = "0";
+  filters.appendChild(btnAll);
+
+  for (const item of data) {
+    const button = document.createElement("button");
+
+    button.textContent = item.name;
+    button.id = item.id;
+
+    filters.appendChild(button);
   }
 }
