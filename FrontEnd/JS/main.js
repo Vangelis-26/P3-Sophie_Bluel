@@ -1,13 +1,13 @@
 // Récupération de tous les travaux via l'API
-import { getDataCategories, getDataGallery } from "./fetch.js";
+import { fetchData } from "./fetch.js";
 import { buildCategories, buildGallery, categoriesFilters } from "./gallery.js";
 
 async function main() {
-  const workdata = await getDataGallery();
+  const workdata = await fetchData("http://localhost:5678/api/works");
   buildGallery(workdata);
   console.log("gallery", workdata);
 
-  const filters = await getDataCategories();
+  const filters = await fetchData("http://localhost:5678/api/categories");
   buildCategories(filters);
   console.log("filters", filters);
 
