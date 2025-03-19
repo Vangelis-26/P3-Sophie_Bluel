@@ -280,3 +280,8 @@ footer nav ul {
 #login-container a {
 	color: black
 }
+
+#email,
+#password {
+	padding-left: 1rem;
+}
