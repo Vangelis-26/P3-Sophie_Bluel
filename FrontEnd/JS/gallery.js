@@ -91,6 +91,10 @@ export function categoriesFilters(data) {
   filters.addEventListener("click", (e) => {
     const btnId = e.target.id;
 
+    if (!btnId) {
+      return;
+    }
+
     // Filtre les éléments en fonction de l'ID du bouton cliqué
     const filteredElements =
       btnId === "0"
