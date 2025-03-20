@@ -8,6 +8,7 @@
  * Gestion de la soumission du formulaire de connexion.
  * @param {Event} e - L'événement de soumission du formulaire.
  */
+
 document.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -23,7 +24,6 @@ document.addEventListener("submit", async (e) => {
         "Content-Type": "application/json", // Indique que le corps de la requête est au format JSON
       },
       body: JSON.stringify({
-        // Conversion des données en JSON pour l'envoi
         email: emailInput.value,
         password: passwordInput.value,
       }),
@@ -33,6 +33,7 @@ document.addEventListener("submit", async (e) => {
     if (!r.ok) {
       const check = document.getElementById("errorlogin");
       if (!check) {
+        // Message d'erreur en cas de login incorrect
         const errorlogin = document.getElementById("password");
         const p = document.createElement("p");
         p.id = "errorlogin";
@@ -45,12 +46,16 @@ document.addEventListener("submit", async (e) => {
 
     const data = await r.json();
 
-    // Stockage du token d'authentification dans sessionStorage
     sessionStorage.setItem("token", data.token);
-
-    // Redirection vers la page index.html après une connexion réussie
     window.location.replace("index.html");
   } catch (error) {
     console.error(error.message);
+  }
+});
+
+passwordInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    loginButton.click();
   }
 });
