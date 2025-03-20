@@ -103,6 +103,7 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	cursor: pointer;
 }
 
 nav li a {
@@ -284,4 +285,12 @@ footer nav ul {
 #email,
 #password {
 	padding-left: 1rem;
+}
+
+#errorlogin {
+	padding: 1rem;
+	margin: 1rem 3rem;
+	text-align: center;
+	background-color: rgb(254, 160, 12);
+	color: white;
 }

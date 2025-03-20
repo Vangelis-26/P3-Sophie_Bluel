@@ -20,7 +20,6 @@ document.addEventListener("submit", async (e) => {
     const r = await fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       headers: {
-        Accept: "application/json", // Indique que le client accepte une réponse JSON
         "Content-Type": "application/json", // Indique que le corps de la requête est au format JSON
       },
       body: JSON.stringify({
@@ -29,8 +28,18 @@ document.addEventListener("submit", async (e) => {
         password: passwordInput.value,
       }),
     });
+    console.log();
 
     if (!r.ok) {
+      const check = document.getElementById("errorlogin");
+      if (!check) {
+        const errorlogin = document.getElementById("password");
+        const p = document.createElement("p");
+        p.id = "errorlogin";
+        p.textContent = "Email ou mot de passe incorrects";
+        errorlogin.insertAdjacentElement("afterend", p);
+      }
+
       throw new Error("Email ou mot de passe incorrects");
     }
 
@@ -42,6 +51,6 @@ document.addEventListener("submit", async (e) => {
     // Redirection vers la page index.html après une connexion réussie
     window.location.replace("index.html");
   } catch (error) {
-    alert(error.message);
+    console.error(error.message);
   }
 });
