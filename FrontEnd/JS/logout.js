@@ -3,7 +3,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loginLogoutLink = document.getElementById("loginLogoutLink");
   const token = sessionStorage.getItem("token"); // ou localStorage.getItem("token")
-  console.log(loginLogoutLink);
   if (token) {
     // Utilisateur connecté
     loginLogoutLink.textContent = "logout";
