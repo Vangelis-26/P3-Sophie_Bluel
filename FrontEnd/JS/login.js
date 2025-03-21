@@ -28,7 +28,6 @@ document.addEventListener("submit", async (e) => {
         password: passwordInput.value,
       }),
     });
-    console.log();
 
     if (!r.ok) {
       const check = document.getElementById("errorlogin");
@@ -56,6 +55,6 @@ document.addEventListener("submit", async (e) => {
 passwordInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
-    loginButton.click();
+    document.querySelector('input[type="submit"]').click();
   }
 });
