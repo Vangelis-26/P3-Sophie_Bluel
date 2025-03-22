@@ -106,3 +106,24 @@ export function categoriesFilters(data) {
     buildGallery(filteredElements);
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const token = sessionStorage.getItem("token");
+
+  if (!token) {
+    return;
+  }
+
+  // Masquer les filtres
+  document.querySelector(".categories").style.display = "none";
+
+  // Afficher le mode édition en haut
+  const topMenuHtml = `<div id="topMenu"><p class="editMode"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p></div>`;
+  document.querySelector("body").insertAdjacentHTML("afterbegin", topMenuHtml);
+
+  // Afficher le bouton modifier
+  const editBtnHtml = `<p class="editBtn"><i class="fa-regular fa-pen-to-square"></i>Modifier</p>`;
+  document
+    .querySelector("#portfolio h2")
+    .insertAdjacentHTML("afterend", editBtnHtml);
+});
