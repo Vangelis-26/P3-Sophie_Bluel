@@ -47,14 +47,14 @@ document.addEventListener("submit", async (e) => {
 
     sessionStorage.setItem("token", data.token);
     window.location.replace("index.html");
+
+    passwordInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.querySelector('input[type="submit"]').click();
+      }
+    });
   } catch (error) {
     console.error(error.message);
-  }
-});
-
-passwordInput.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    document.querySelector('input[type="submit"]').click();
   }
 });
