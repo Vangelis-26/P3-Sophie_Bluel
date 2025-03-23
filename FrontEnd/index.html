@@ -23,6 +23,14 @@
     <script type="module" src="/FrontEnd/JS/logout.js" defer></script>
   </head>
   <body>
+    <aside class="modal" id="modal" aria-hidden="true" role="dialog">
+      <div class="modalWrapper">
+        <div class="modalHeader"><i class="fa-solid fa-xmark"></i></div>
+        <h3 id="tilteModal">Galerie photos</h3>
+        <div class="modalGallery"></div>
+        <input type="submit" id="addPhotos" value="Ajouter une photo"></input>
+      </div>
+    </aside>
     <header>
       <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
       <nav>
