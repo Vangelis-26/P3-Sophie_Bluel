@@ -118,12 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".categories").style.display = "none";
 
   // Afficher le mode édition en haut
-  const topMenuHtml = `<div id="topMenu"><p class="editMode"><i class="fa-regular fa-pen-to-square"></i>Mode édition</p></div>`;
+  const topMenuHtml = `<div id="topMenu"><a href="#modal1" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>Mode édition</a></div>`;
   document.querySelector("body").insertAdjacentHTML("afterbegin", topMenuHtml);
 
   // Afficher le bouton modifier
-  const editBtnHtml = `<p class="editBtn"><i class="fa-regular fa-pen-to-square"></i>Modifier</p>`;
+  const editBtnHtml = `<div><a href="#modal2" id="editBtn" class="js-modal"><i class="fa-regular fa-pen-to-square"></i>modifier</a></div>`;
   document
     .querySelector("#portfolio h2")
-    .insertAdjacentHTML("afterend", editBtnHtml);
+    .insertAdjacentHTML("beforeend", editBtnHtml);
 });

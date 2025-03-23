@@ -56,7 +56,8 @@ table {
 
 /** end reset css**/
 body {
-	max-width: 1140px;
+	box-sizing: border-box;
+	width: 1140px;
 	margin: auto;
 	font-family: "Work Sans";
 	font-size: 14px;
@@ -314,13 +315,29 @@ footer nav ul {
 
 #editMode {
 	color: #000000;
-
 }
 
-.editBtn {
-	position: relative;
-	left: 43.5rem;
-	bottom: 3.1rem;
+h2 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#editBtn {
+	display: flex;
+	color: #000000;
+	padding-left: 1.5rem;
+	padding-top: 0.1rem;
+	font-size: 14px;
+}
+
+#editBtn i {
+	padding-right: 0.5rem;
+}
+
+.js-modal {
+	all: unset;
+	cursor: pointer;
 }
 
 /* --------- Modal --------- */
@@ -352,8 +369,8 @@ footer nav ul {
 
 .modalHeader i {
 	position: relative;
-	left: 18.2rem;
-	top: 0.9rem;
+	left: 17.7rem;
+	top: 1.6rem;
 }
 
 h3 {
@@ -363,7 +380,7 @@ h3 {
 
 #addPhotos {
 	position: absolute;
-	bottom: 0;
+	bottom: 8.5rem;
 	height: 36px;
 	font-size: 14px;
 	width: 237px;
