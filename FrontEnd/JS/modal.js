@@ -4,22 +4,26 @@
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
-let modal = document.querySelector(".modal");
-const focusableSelector = "button, a, input, textarea";
-let focusables = [];
+const modal = document.querySelector(".modal");
+const jsModalClose = document.querySelector(".js-modal-close");
+const jsModalStop = document.querySelector(".js-modal-stop");
+const focusables = Array.from(
+  modal.querySelectorAll("button, a, input, textarea")
+);
+
+const stopPropagation = function (e) {
+  e.stopPropagation();
+};
 
 // Ouverture Modal
 const openModal = function (e) {
   e.preventDefault();
-  focusables = Array.from(modal.querySelectorAll(focusableSelector));
   modal.style.display = null;
   modal.removeAttribute("aria-hidden");
   modal.setAttribute("aria-modal", "true");
   modal.addEventListener("click", closeModal);
-  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-stop")
-    .addEventListener("click", stopPropagation);
+  jsModalClose.addEventListener("click", closeModal);
+  jsModalStop.addEventListener("click", stopPropagation);
 };
 
 // Fermeture Modal
@@ -31,16 +35,8 @@ const closeModal = function (e) {
   modal.setAttribute("aria-hidden", "true");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-close")
-    .removeEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-stop")
-    .removeEventListener("click", stopPropagation);
-};
-
-const stopPropagation = function (e) {
-  e.stopPropagation();
+  jsModalClose.removeEventListener("click", closeModal);
+  jsModalStop.removeEventListener("click", stopPropagation);
 };
 
 // Focus dans la Modal
@@ -105,4 +101,15 @@ export function modalGallery(data) {
   });
   // Ajoute les éléments au DOM
   galleryContent.appendChild(fragment);
+}
+
+/////////////////////////////////////////////////////////////////////
+///                                                               ///
+///                      Modal Delete Work                        ///
+///                                                               ///
+/////////////////////////////////////////////////////////////////////
+
+export function modalDeleteWork(data) {
+  const galleryContent = document.querySelector(".modalGalleryContent");
+  galleryContent.forEach((item) => {});
 }
