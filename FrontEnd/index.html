@@ -24,9 +24,9 @@
     <script type="module" src="/FrontEnd/JS/modal.js" defer></script>
   </head>
   <body>
-    <aside class="modal" id="modal" aria-hidden="true" role="dialog" style="display: none">
-      <div class="modalWrapper">
-        <div class="modalHeader"><i class="fa-solid fa-xmark"></i></div>
+    <aside class="modal" id="modal" aria-hidden="true" role="dialog" style="display: none" aria-modal="false" aria-labelledby="tilteModal">
+      <div class="modalWrapper js-modal-stop">
+        <button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
         <h3 id="tilteModal">Galerie photos</h3>
         <div class="modalGallery"></div>
         <input type="submit" id="addPhotos" value="Ajouter une photo"></input>
