@@ -32,7 +32,7 @@ const closeModal = function (e) {
   window.setTimeout(() => {
     modal.style.display = "none";
   }, 500);
-  modal.setAttribute("aria-hidden", "true");
+  modal.setAttribute("aria-hidden", "inert");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
   jsModalClose.removeEventListener("click", closeModal);
@@ -91,8 +91,12 @@ export function modalGallery(data) {
 
     // Configure les attributs et le contenu des éléments
     trash.id = item.id;
-    trash.classList.add("fa-solid", "fa-trash-can");
+    figure.id = item.id;
+    trash.classList.add("fa-solid", "fa-trash-can", "trash");
     img.setAttribute("src", item.imageUrl);
+    trash.addEventListener("click", (e) => {
+      modalDeleteWork(item.id);
+    });
 
     // Ajoute les éléments au fragment
     figure.appendChild(img);
@@ -109,7 +113,22 @@ export function modalGallery(data) {
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
-export function modalDeleteWork(data) {
-  const galleryContent = document.querySelector(".modalGalleryContent");
-  galleryContent.forEach((item) => {});
+export async function modalDeleteWork(trashId) {
+  try {
+    const works = Array.from(
+      document.querySelectorAll(".modalGalleryContent figure")
+    );
+    const work = works.find((w) => w.id === trashId.toString());
+    work.remove();
+    const token = sessionStorage.getItem("token");
+    // Envoi de la requête DELETE à l'API pour la connexion
+    const r = await fetch(`http://localhost:5678/api/works/${trashId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error(error.message);
+  }
 }
