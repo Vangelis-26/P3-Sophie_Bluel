@@ -366,7 +366,7 @@ h2 {
 }
 
 .modalWrapper {
-	overflow: auto;
+	margin: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -388,7 +388,7 @@ h2 {
 	cursor: pointer;
 	position: relative;
 	left: 17.7rem;
-	top: 1.6rem;
+	top: 1rem;
 }
 
 .js-modal-close:focus-visible {
@@ -399,16 +399,46 @@ h2 {
 h3 {
 	font-size: 26px;
 	padding-top: 3.75rem;
+	margin-bottom: 40px;
+}
+
+.modalGalleryContent {
+	width: 420px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 9px;
+	grid-row-gap: 10px;
+	padding: 0 6.5rem 0 6.5rem;
+}
+
+.modalGalleryContent img {
+	width: auto;
+	height: 102.5px;
+}
+
+hr {
+	width: 420px;
+	margin-top: 40px;
 }
 
 #addPhotos {
-	position: absolute;
-	bottom: 8.5rem;
 	height: 36px;
 	font-size: 14px;
 	width: 237px;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.modalWrapper button.fa-trash-can {
+	cursor: pointer;
+	position: relative;
+	bottom: 6.2rem;
+	left: 3.3rem;
+	background-color: black;
+	color: #FFFFFF;
+	border-radius: 2px;
+	padding: 4px 5px;
+	font-size: 0.7rem;
 }
 
 /* --------- Animation Modal --------- */
