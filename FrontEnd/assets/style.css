@@ -57,7 +57,7 @@ table {
 /** end reset css**/
 body {
 	box-sizing: border-box;
-	width: 1140px;
+	max-width: 1140px;
 	margin: auto;
 	font-family: "Work Sans";
 	font-size: 14px;
@@ -329,6 +329,8 @@ h2 {
 	padding-left: 1.5rem;
 	padding-top: 0.1rem;
 	font-size: 14px;
+	font-family: "Work Sans";
+	font-weight: 400;
 }
 
 #editBtn i {
@@ -351,7 +353,16 @@ h2 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: 0 0 0 0.3;
+	background-color: rgba(0, 0, 0, 0.3);
+	animation: fadeIn 0.3s both;
+}
+
+.modal[aria-hidden="true"] {
+	animation: fadeOut 0.3s both;
+}
+
+.modal[aria-hidden="true"] .modalWrapper {
+	animation: scaleFadeOut 0.3s both;
 }
 
 .modalWrapper {
@@ -365,12 +376,24 @@ h2 {
 	max-height: calc(100vh - 50px);
 	border-radius: 10px;
 	background-color: #FFFFFF;
+	animation: scaleFadeIn 0.3s both;
 }
 
-.modalHeader i {
+.modalWrapper button {
+	background: none;
+	border: none;
+}
+
+.js-modal-close {
+	cursor: pointer;
 	position: relative;
 	left: 17.7rem;
 	top: 1.6rem;
+}
+
+.js-modal-close:focus-visible {
+	background-color: lightblue;
+	border-radius: 5px;
 }
 
 h3 {
@@ -386,4 +409,53 @@ h3 {
 	width: 237px;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+/* --------- Animation Modal --------- */
+/* Keyframes pour l'effet de fondu entrant */
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+/* Keyframes pour l'effet de fondu sortant */
+@keyframes fadeOut {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+/* Keyframes pour l'effet d'échelle et de fondu entrant */
+@keyframes scaleFadeIn {
+	from {
+		transform: scale(0.8);
+		opacity: 0;
+	}
+
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* Keyframes pour l'effet d'échelle et de fondu sortant */
+@keyframes scaleFadeOut {
+	from {
+		transform: scale(1);
+		opacity: 1;
+	}
+
+	to {
+		transform: scale(0.8);
+		opacity: 0;
+	}
 }
