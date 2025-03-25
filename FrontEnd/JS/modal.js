@@ -76,3 +76,33 @@ window.addEventListener("keydown", function (e) {
     focusInModal(e);
   }
 });
+
+/////////////////////////////////////////////////////////////////////
+///                                                               ///
+///                          Modal Work                           ///
+///                                                               ///
+/////////////////////////////////////////////////////////////////////
+
+export function modalGallery(data) {
+  const galleryContent = document.querySelector(".modalGalleryContent");
+  const fragment = document.createDocumentFragment();
+  // Itère sur chaque élément du tableau de données
+  data.forEach((item) => {
+    // Crée les éléments HTML pour chaque projet
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const trash = document.createElement("button");
+
+    // Configure les attributs et le contenu des éléments
+    trash.id = item.id;
+    trash.classList.add("fa-solid", "fa-trash-can");
+    img.setAttribute("src", item.imageUrl);
+
+    // Ajoute les éléments au fragment
+    figure.appendChild(img);
+    figure.appendChild(trash);
+    fragment.appendChild(figure);
+  });
+  // Ajoute les éléments au DOM
+  galleryContent.appendChild(fragment);
+}
