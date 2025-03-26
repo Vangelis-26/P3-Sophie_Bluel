@@ -33,6 +33,10 @@ footer, header, hgroup, menu, nav, section {
 body {
 	background-color: #fffef8;
 	line-height: 1;
+	max-width: 1140px;
+	margin: auto;
+	font-family: "Work Sans";
+	font-size: 14px;
 }
 
 ol, ul {
@@ -55,22 +59,10 @@ table {
 }
 
 /** end reset css**/
-body {
-	box-sizing: border-box;
-	max-width: 1140px;
-	margin: auto;
-	font-family: "Work Sans";
-	font-size: 14px;
-}
-
 header {
 	display: flex;
 	justify-content: space-between;
 	margin: 38px 0;
-}
-
-section {
-	margin: 50px 0;
 }
 
 h1 {
@@ -104,11 +96,21 @@ nav ul {
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
+	font-weight: 400;
 	cursor: pointer;
 }
 
-nav li a {
-	all: unset;
+nav li:hover {
+	font-weight: 700;
+}
+
+.js-modal {
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 nav .actif {
@@ -118,6 +120,11 @@ nav .actif {
 
 li:hover {
 	color: #b1663c;
+}
+
+input[type="text"], input[type="email"], input[type="password"], #category {
+	height: 51px;
+	padding: 0;
 }
 
 #introduction {
@@ -148,11 +155,13 @@ li:hover {
 }
 
 #portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+	padding: 7.2rem 0 2.5rem 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.categories button:hover, button:focus, button:active {
+.categories button:hover {
 	background-color: #1d6154;
 	color: #ffffff;
 	cursor: pointer;
@@ -180,11 +189,12 @@ li:hover {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-column-gap: 18px;
+	grid-row-gap: 16px;
 }
 
 .gallery img {
+	padding-bottom: 7px;
 	width: 100%;
 }
 
@@ -199,6 +209,7 @@ li:hover {
 
 #contact h2 {
 	margin-bottom: 20px;
+	padding-top: 3.5rem;
 }
 
 #contact form {
@@ -208,8 +219,7 @@ li:hover {
 	flex-direction: column;
 }
 
-#contact input {
-	height: 36px;
+#contact input, #contact textarea, #login-form input, #title, #category, #addPhotos, #valider {
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
@@ -219,12 +229,8 @@ li:hover {
 	margin: 2em 0 1em 0;
 }
 
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
 input[type="submit"] {
+	height: 36px;
 	font-family: "Syne";
 	font-weight: 700;
 	color: white;
@@ -233,10 +239,6 @@ input[type="submit"] {
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
-}
-
-footer {
-	padding-top: 10rem;
 }
 
 footer nav ul {
@@ -255,37 +257,13 @@ footer nav ul {
 	display: flex;
 	flex-direction: column;
 	width: 379px;
-}
-
-#login-form label {
-	margin: 3em 0 1em 0;
-}
-
-#login-form input[type="submit"] {
-	height: 36px;
-	font-size: 14px;
+	gap: 7px;
+	padding: 2.3rem 0;
 }
 
 #login-form input[type=submit]:hover {
-	color: #1D6154;
-	background-color: white;
-}
-
-#login-form input {
-	height: 51px;
-	cursor: pointer;
-	font-size: 1.2em;
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
-
-#login-container a {
-	color: black
-}
-
-#email,
-#password {
-	padding-left: 1rem;
+	color: #ffffff;
+	background-color: #0E2F28;
 }
 
 #errorlogin {
@@ -300,9 +278,7 @@ footer nav ul {
 
 #topMenu {
 	background-color: #000000;
-	width: 100%;
 	height: 3.6rem;
-	margin: 0;
 	color: #FFFFFF;
 	display: flex;
 	justify-content: center;
@@ -313,33 +289,13 @@ footer nav ul {
 	margin-right: 0.5rem;
 }
 
-#editMode {
-	color: #000000;
-}
-
-h2 {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
 #editBtn {
-	display: flex;
+	display: block;
+	padding-left: 1rem;
 	color: #000000;
-	padding-left: 1.5rem;
-	padding-top: 0.1rem;
 	font-size: 14px;
 	font-family: "Work Sans";
 	font-weight: 400;
-}
-
-#editBtn i {
-	padding-right: 0.5rem;
-}
-
-.js-modal {
-	all: unset;
-	cursor: pointer;
 }
 
 /* --------- Modal --------- */
@@ -365,7 +321,7 @@ h2 {
 	animation: scaleFadeOut 0.3s both;
 }
 
-.modalWrapper {
+#editGallery, #addPicture {
 	margin: auto;
 	display: flex;
 	flex-direction: column;
@@ -379,16 +335,26 @@ h2 {
 	animation: scaleFadeIn 0.3s both;
 }
 
-.modalWrapper button {
-	background: none;
-	border: none;
+.modalGalleryContent {
+	width: 420px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	grid-column-gap: 9px;
+	grid-row-gap: 10px;
+	padding: 0 6.5rem;
+}
+
+.modalGalleryContent img {
+	width: auto;
+	height: 102.5px;
 }
 
 .js-modal-close {
-	cursor: pointer;
 	position: relative;
 	left: 17.7rem;
 	top: 1rem;
+	background: none;
+	border: none;
 }
 
 .js-modal-close:focus-visible {
@@ -399,38 +365,46 @@ h2 {
 h3 {
 	font-size: 26px;
 	padding-top: 3.75rem;
-	margin-bottom: 40px;
+	margin-bottom: 2.3rem;
 }
 
-.modalGalleryContent {
-	width: 420px;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-	grid-column-gap: 9px;
-	grid-row-gap: 10px;
+.file-section {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	background-color: #E8F1F6;
+	border-radius: 3px;
+	margin-bottom: 30px;
+}
+
+.file-section p {
+	color: #444444;
+	font-size: 10px;
+	padding: 7px 0 19px 0;
+
+}
+
+#picture-form {
+	color: #B9C5CC;
+	display: flex;
+	flex-direction: column;
 	padding: 0 6.5rem 0 6.5rem;
+	color: #3D3D3D;
 }
 
-.modalGalleryContent img {
-	width: auto;
-	height: 102.5px;
+#picture-form label {
+	font-weight: 600;
 }
 
-hr {
-	width: 420px;
-	margin-top: 40px;
-}
-
-#addPhotos {
+#addPictureButton {
 	height: 36px;
-	font-size: 14px;
-	width: 237px;
+	width: 173px;
 	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	background-color: #CBD6DC;
 }
 
 .modalWrapper button.fa-trash-can {
-	cursor: pointer;
+	border: none;
 	position: relative;
 	bottom: 6.2rem;
 	left: 3.3rem;
@@ -439,6 +413,43 @@ hr {
 	border-radius: 2px;
 	padding: 4px 5px;
 	font-size: 0.7rem;
+}
+
+hr {
+	width: 420px;
+	margin-top: 40px;
+}
+
+#addPhotos, #valider {
+	width: 237px;
+	cursor: pointer;
+}
+
+#addfile {
+	font-size: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background-color: #CBD6DC;
+	color: #306685;
+	cursor: pointer;
+}
+
+#picture {
+	color: #B9C5CC;
+	font-size: 4.75rem;
+	padding: 13px 0 6px 0;
+}
+
+#file {
+	display: none;
+}
+
+#title, #category {
+	margin: 10px 0 21px 0;
 }
 
 /* --------- Animation Modal --------- */
@@ -467,7 +478,7 @@ hr {
 /* Keyframes pour l'effet d'échelle et de fondu entrant */
 @keyframes scaleFadeIn {
 	from {
-		transform: scale(0.8);
+		transform: scale(0.95);
 		opacity: 0;
 	}
 
@@ -485,7 +496,7 @@ hr {
 	}
 
 	to {
-		transform: scale(0.8);
+		transform: scale(0.95);
 		opacity: 0;
 	}
 }
