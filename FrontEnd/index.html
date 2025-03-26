@@ -25,12 +25,41 @@
   </head>
   <body>
     <aside class="modal" id="modal" aria-hidden="true" role="dialog" style="display: none" aria-modal="false" aria-labelledby="tilteModal">
-      <div class="modalWrapper js-modal-stop">
+      <!-- Modal Gallery -->
+      <div class="modalWrapper js-modal-stop" id="editGallery">
         <button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
-        <h3 id="tilteModal">Galerie photos</h3>
+        <h3 id="titleModal">Galerie photos</h3>
         <div class="modalGalleryContent"></div>
         <hr>
         <input type="submit" id="addPhotos" value="Ajouter une photo"></input>
+      </div>
+      <!-- Modal Ajout Photo -->
+      <div class="modalWrapper js-modal-stop" id="addPicture">
+        <button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+        <h3 id="tilteModal">Ajout Photo</h3>
+        <div id="addWork">
+          <!-- Ajout Photo -->
+          <form id="picture-form" action="#" method="post" enctype="multipart/form-data">
+            <div class="file-section">
+              <div><i id="picture" class="fa-regular fa-image"></i></div>
+              <label id="addfile" for="file">+ Ajouter photo</label>
+              <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+              <p class="picture-loaded">jpg, png : 4mo max</p>
+            </div>
+            <!-- Titre -->
+            <label for="title">Titre</label>
+            <input type="text" name="title" id="title" />
+            <!-- Catégorie -->
+            <label for="category">Catégorie</label>
+            <select id="category" name="category" size="1">
+              <option value="1">Objets</option>
+              <option value="2">Appartements</option>
+              <option value="3">Hotels & restaurants</option>
+            </select>
+            <hr />
+            <input type="submit" value="Valider" id="valider"/>
+          </form>
+        </div>
       </div>
     </aside>
     <header>
@@ -69,7 +98,7 @@
         </article>
       </section>
       <section id="portfolio">
-        <h2>Mes Projets</h2>
+        <h2>Mes projets</h2>
         <div class="categories"></div>
         <div class="gallery"></div>
       </section>
