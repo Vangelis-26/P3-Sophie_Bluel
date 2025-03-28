@@ -18,10 +18,8 @@ const focusables = Array.from(
   modal.querySelectorAll("button, a, input, textarea")
 );
 
+// Empêche la propagation des événements de clic
 const stopPropagation = (e) => e.stopPropagation();
-
-modalEditGallery.addEventListener("click", stopPropagation);
-modalAddWork.addEventListener("click", stopPropagation);
 
 // Ouverture Modal
 const openModal = function (e) {
@@ -58,19 +56,21 @@ const focusInModal = function (e) {
   console.log(index);
 };
 
-// Ecoute des boutons d'ouverture
+// Ecouteurs d'évènements
+
+// Ouverture
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelectorAll(".js-modal").forEach((link) => {
-    link.addEventListener("click", openModal);
+  document.querySelectorAll(".js-modal").forEach((openButton) => {
+    openButton.addEventListener("click", openModal);
   });
 });
 
-// Ecoute des boutons de fermeture
+// Fermeture
 jsModalClose.forEach((closeButton) => {
   closeButton.addEventListener("click", closeModal);
 });
 
-// Ecoute des touches clavier
+// Clavier
 window.addEventListener("keydown", function (e) {
   if (e.key === "Escape" || e.key === "Esc") {
     closeModal(e);
@@ -80,16 +80,20 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
+// Empêche la propagation des événements de clic
+modalEditGallery.addEventListener("click", stopPropagation);
+modalAddWork.addEventListener("click", stopPropagation);
+
 /////////////////////////////////////////////////////////////////////
 ///                                                               ///
-///                          Modal Work API                       ///
+///                          API Work                             ///
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
 export function modalGallery(data) {
   const galleryContent = document.querySelector(".modalGalleryContent");
   const fragment = document.createDocumentFragment();
-  // Itère sur chaque élément du tableau de données
+
   data.forEach((item) => {
     // Crée les éléments HTML pour chaque projet
     const figure = document.createElement("figure");
@@ -110,13 +114,14 @@ export function modalGallery(data) {
     figure.appendChild(trash);
     fragment.appendChild(figure);
   });
+
   // Ajoute les éléments au DOM
   galleryContent.appendChild(fragment);
 }
 
 /////////////////////////////////////////////////////////////////////
 ///                                                               ///
-///                      Modal Delete Work                        ///
+///                         Delete Work                           ///
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
@@ -181,3 +186,36 @@ export const selectCategory = function (data) {
   });
   select.appendChild(fragment);
 };
+
+/////////////////////////////////////////////////////////////////////
+///                                                               ///
+///                 Apercu de l'image du projet                   ///
+///                                                               ///
+/////////////////////////////////////////////////////////////////////
+
+function previewImage() {
+  const fileInput = document.querySelector(" #file");
+  const fileSection = document.querySelector(".file-section");
+
+  fileInput.addEventListener("change", function () {
+    const file = fileInput.files[0];
+
+    if (!file) {
+      return;
+    }
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const previewImage = document.createElement("img");
+      previewImage.src = e.target.result;
+      previewImage.style.maxWidth = "100%";
+      previewImage.style.maxHeight = "167px";
+      previewImage.style.objectFit = "contain";
+      fileSection.innerHTML = "";
+      fileSection.appendChild(previewImage);
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+previewImage();
