@@ -167,8 +167,13 @@ input[type="text"], input[type="email"], input[type="password"], #category {
 	cursor: pointer;
 }
 
+.categories button.active {
+	background-color: #1d6154;
+	color: #ffffff;
+}
+
 .categories button {
-	all: unset;
+	background: none;
 	color: #1d6154;
 	border: 1px solid #1d6154;
 	border-radius: 60px;

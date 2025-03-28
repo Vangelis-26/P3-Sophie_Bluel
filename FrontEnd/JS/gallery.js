@@ -95,6 +95,14 @@ export function categoriesFilters(data) {
       return;
     }
 
+    const filterButtons = filters.querySelectorAll("button");
+
+    filterButtons.forEach((button) => {
+      button.classList.remove("active");
+    });
+
+    e.target.classList.add("active");
+
     // Filtre les éléments en fonction de l'ID du bouton cliqué
     const filteredElements =
       btnId === "0"
