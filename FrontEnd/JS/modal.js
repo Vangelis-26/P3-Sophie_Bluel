@@ -82,7 +82,7 @@ window.addEventListener("keydown", function (e) {
 
 /////////////////////////////////////////////////////////////////////
 ///                                                               ///
-///                          Modal Work                           ///
+///                          Modal Work API                       ///
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
@@ -159,3 +159,25 @@ function modalSwitch(e) {
     modalEditGallery.style.display = "flex";
   }
 }
+
+/////////////////////////////////////////////////////////////////////
+///                                                               ///
+///                   Modal Add Work Categories                   ///
+///                                                               ///
+/////////////////////////////////////////////////////////////////////
+
+export const selectCategory = function (data) {
+  const select = document.getElementById("category");
+  const fragment = document.createDocumentFragment();
+
+  data.forEach((item) => {
+    // Crée les éléments HTML pour chaque projet
+    const option = document.createElement("option");
+    option.value = item.id;
+    option.textContent = item.name;
+
+    // Ajoute les éléments au fragment
+    fragment.appendChild(option);
+  });
+  select.appendChild(fragment);
+};
