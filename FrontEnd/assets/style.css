@@ -219,6 +219,10 @@ input[type="text"], input[type="email"], input[type="password"], #category {
 	flex-direction: column;
 }
 
+#login-form input {
+	cursor: pointer;
+}
+
 #contact input, #contact textarea, #login-form input, #title, #category, #addPhotos, #valider {
 	font-size: 1.2em;
 	border: none;
@@ -261,7 +265,7 @@ footer nav ul {
 	padding: 2.3rem 0;
 }
 
-#login-form input[type=submit]:hover {
+#login-form input[type=submit]:hover, #valider:hover, #addPhotos:hover {
 	color: #ffffff;
 	background-color: #0E2F28;
 }
@@ -352,7 +356,7 @@ footer nav ul {
 .js-modal-back {
 	font-size: 1.1rem;
 	position: absolute;
-	right: 46rem;
+	right: 76.3rem;
 	top: 8rem;
 	background: none;
 	border: none;
