@@ -124,7 +124,7 @@ li:hover {
 
 input[type="text"], input[type="email"], input[type="password"], #category {
 	height: 51px;
-	padding: 0;
+	padding-left: 1rem;
 }
 
 #introduction {
@@ -349,12 +349,24 @@ footer nav ul {
 	height: 102.5px;
 }
 
+.js-modal-back {
+	font-size: 1.1rem;
+	position: absolute;
+	right: 46rem;
+	top: 8rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
 .js-modal-close {
+	font-size: 1.1rem;
 	position: relative;
 	left: 17.7rem;
 	top: 1rem;
 	background: none;
 	border: none;
+	cursor: pointer;
 }
 
 .js-modal-close:focus-visible {
@@ -450,53 +462,4 @@ hr {
 
 #title, #category {
 	margin: 10px 0 21px 0;
-}
-
-/* --------- Animation Modal --------- */
-/* Keyframes pour l'effet de fondu entrant */
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
-}
-
-/* Keyframes pour l'effet de fondu sortant */
-@keyframes fadeOut {
-	from {
-		opacity: 1;
-	}
-
-	to {
-		opacity: 0;
-	}
-}
-
-/* Keyframes pour l'effet d'échelle et de fondu entrant */
-@keyframes scaleFadeIn {
-	from {
-		transform: scale(0.95);
-		opacity: 0;
-	}
-
-	to {
-		transform: scale(1);
-		opacity: 1;
-	}
-}
-
-/* Keyframes pour l'effet d'échelle et de fondu sortant */
-@keyframes scaleFadeOut {
-	from {
-		transform: scale(1);
-		opacity: 1;
-	}
-
-	to {
-		transform: scale(0.95);
-		opacity: 0;
-	}
 }
