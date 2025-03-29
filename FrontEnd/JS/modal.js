@@ -35,6 +35,7 @@ const closeModal = function (e) {
   modal.setAttribute("aria-hidden", "inert");
   modal.removeAttribute("aria-modal");
   modal.removeEventListener("click", closeModal);
+  resetAddPictureModal();
 };
 
 // Focus dans la Modal
@@ -194,7 +195,7 @@ export const selectCategory = function (data) {
 /////////////////////////////////////////////////////////////////////
 
 function previewImage() {
-  const fileInput = document.querySelector(" #file");
+  const fileInput = document.querySelector("#file");
   const fileSection = document.querySelector(".file-section");
 
   fileInput.addEventListener("change", function () {
@@ -207,10 +208,8 @@ function previewImage() {
 
     reader.onload = function (e) {
       const previewImage = document.createElement("img");
+      previewImage.classList.add("preview-image");
       previewImage.src = e.target.result;
-      previewImage.style.maxWidth = "100%";
-      previewImage.style.maxHeight = "167px";
-      previewImage.style.objectFit = "contain";
       fileSection.innerHTML = "";
       fileSection.appendChild(previewImage);
     };
@@ -218,4 +217,27 @@ function previewImage() {
     reader.readAsDataURL(file);
   });
 }
+
+function resetAddPictureModal() {
+  const fileSection = document.querySelector(".file-section");
+  const titleInput = document.getElementById("title");
+  const categorySelect = document.getElementById("category");
+
+  // Réinitialiser l'aperçu de l'image
+  fileSection.innerHTML = `
+    <div><i id="picture" class="fa-regular fa-image"></i></div>
+    <label id="addfile" for="file">+ Ajouter photo</label>
+    <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+    <p class="picture-loaded">jpg, png : 4mo max</p>
+  `;
+
+  // Réinitialiser le formulaire
+  titleInput.value = "";
+  categorySelect.selectedIndex = 0;
+
+  // Réappliquer l'écouteur d'événements pour l'aperçu de l'image
+  previewImage();
+}
+
+// Initialise l'écouteur au chargement de la page
 previewImage();
