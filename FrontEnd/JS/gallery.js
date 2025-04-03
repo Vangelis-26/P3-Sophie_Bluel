@@ -38,6 +38,7 @@ export function buildGallery(data) {
     img.setAttribute("src", item.imageUrl);
     img.setAttribute("alt", item.title);
     figcaption.textContent = item.title;
+    figure.id = item.id;
 
     // Ajoute les éléments à la galerie
     gallery.appendChild(figure);

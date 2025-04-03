@@ -4,6 +4,8 @@
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+import { buildGallery } from "./gallery.js";
+
 const modal = document.querySelector(".modal");
 
 // Pages Modal
@@ -131,7 +133,14 @@ export async function modalDeleteWork(trashId) {
     const works = Array.from(
       document.querySelectorAll(".modalGalleryContent figure")
     );
+    const worksGallery = Array.from(
+      document.querySelectorAll(".gallery figure")
+    );
+
+    const workGallery = worksGallery.find((w) => w.id === trashId.toString());
     const work = works.find((w) => w.id === trashId.toString());
+
+    workGallery.remove();
     work.remove();
     const token = sessionStorage.getItem("token");
     // Envoi de la requête DELETE à l'API pour la connexion
@@ -194,6 +203,9 @@ export const selectCategory = function (data) {
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+const tailleMaxFichier = 4 * 1024 * 1024;
+const typesImagesAcceptes = "image/png, image/jpeg";
+
 function previewImage() {
   const fileInput = document.querySelector("#file");
   const fileSection = document.querySelector(".file-section");
@@ -204,6 +216,13 @@ function previewImage() {
     if (!file) {
       return;
     }
+
+    if (file.size > tailleMaxFichier) {
+      alert("Le fichier est trop volumineux (4 Mo max).");
+      resetAddPictureModal();
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = function (e) {
@@ -227,7 +246,7 @@ function resetAddPictureModal() {
   fileSection.innerHTML = `
     <div><i id="picture" class="fa-regular fa-image"></i></div>
     <label id="addfile" for="file">+ Ajouter photo</label>
-    <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+    <input type="file" id="file" name="file" accept="${typesImagesAcceptes}" />
     <p class="picture-loaded">jpg, png : 4mo max</p>
   `;
 
@@ -239,5 +258,62 @@ function resetAddPictureModal() {
   previewImage();
 }
 
-// Initialise l'écouteur au chargement de la page
+/////////////////////////////////////////////////////////////////////
+///                                                               ///
+///                  Envoi Du Projet via l'API                    ///
+///                                                               ///
+/////////////////////////////////////////////////////////////////////
+
+function sendWork() {
+  const form = document.getElementById("picture-form");
+  const titleInput = document.getElementById("title");
+  const categorySelect = document.getElementById("category");
+  const fileInput = document.getElementById("file");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!fileInput.files[0]) {
+      alert("Veuillez sélectionner une image.");
+      return;
+    }
+
+    if (titleInput.value.trim() === "") {
+      alert("Veuillez entrer un titre.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", fileInput.files[0]);
+    formData.append("title", titleInput.value);
+    formData.append("category", categorySelect.value);
+
+    try {
+      const token = sessionStorage.getItem("token");
+      const response = await fetch(`http://localhost:5678/api/works`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du projet.");
+      }
+
+      const newWork = await response.json();
+      buildGallery([newWork]); // Ajoute le nouveau projet à la galerie
+
+      // Réinitialiser le modal après l'envoi
+      resetAddPictureModal();
+      closeModal();
+    } catch (error) {
+      console.error(error.message);
+    }
+  });
+}
+
+// Initialisations
 previewImage();
+sendWork();

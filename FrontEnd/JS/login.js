@@ -9,7 +9,9 @@
  * @param {Event} e - L'événement de soumission du formulaire.
  */
 
-document.addEventListener("submit", async (e) => {
+const login = document.getElementById("login-form");
+
+login.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   // Récupération des éléments d'entrée email et password
