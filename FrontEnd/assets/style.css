@@ -361,7 +361,7 @@ footer nav ul {
 .js-modal-back {
 	font-size: 1.1rem;
 	position: absolute;
-	right: 49rem;
+	right: 58.5rem;
 	top: 8rem;
 	background: none;
 	border: none;
@@ -431,10 +431,14 @@ h3 {
 	background-color: #CBD6DC;
 }
 
+.modalGalleryContent figure {
+	position: relative;
+}
+
 .modalWrapper button.fa-trash-can {
 	border: none;
-	position: relative;
-	bottom: 6.2rem;
+	position: absolute;
+	bottom: 5.1rem;
 	left: 3.3rem;
 	background-color: black;
 	color: #FFFFFF;
