@@ -307,8 +307,8 @@ function sendWork() {
       alert("Projet ajouté avec succès!");
 
       const newWork = await response.json();
-      buildGallery([newWork]); // Ajoute le nouveau projet à la galerie
-      modalGallery([newWork]); // Ajoute le nouveau projet au modal
+      buildGallery([newWork]);
+      modalGallery([newWork]);
 
       // Réinitialiser le modal après l'envoi
       resetAddPictureModal();
