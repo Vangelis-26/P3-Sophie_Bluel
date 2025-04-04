@@ -29,6 +29,8 @@ const openModal = function (e) {
   modal.removeAttribute("aria-hidden");
   modal.setAttribute("aria-modal", "true");
   modal.addEventListener("click", closeModal);
+  modalEditGallery.style.display = "flex";
+  modalAddWork.style.display = "none";
 };
 
 // Fermeture Modal
@@ -237,12 +239,12 @@ function previewImage() {
   });
 }
 
+// Réinitialiser le modal d'ajout de photo
 function resetAddPictureModal() {
   const fileSection = document.querySelector(".file-section");
   const titleInput = document.getElementById("title");
   const categorySelect = document.getElementById("category");
 
-  // Réinitialiser l'aperçu de l'image
   fileSection.innerHTML = `
     <div><i id="picture" class="fa-regular fa-image"></i></div>
     <label id="addfile" for="file">+ Ajouter photo</label>
@@ -302,8 +304,11 @@ function sendWork() {
         throw new Error("Erreur lors de l'envoi du projet.");
       }
 
+      alert("Projet ajouté avec succès!");
+
       const newWork = await response.json();
       buildGallery([newWork]); // Ajoute le nouveau projet à la galerie
+      modalGallery([newWork]); // Ajoute le nouveau projet au modal
 
       // Réinitialiser le modal après l'envoi
       resetAddPictureModal();
