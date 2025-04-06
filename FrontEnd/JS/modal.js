@@ -6,6 +6,7 @@
 
 import { buildGallery } from "./gallery.js";
 
+// ----- Création de la Modal Principale ---- //
 const modal = document.querySelector(".modal");
 
 // Pages Modal
@@ -16,9 +17,6 @@ const modalAddWork = document.getElementById("addPicture");
 const modal2 = document.getElementById("addPhotos");
 const modalBack = document.querySelector(".js-modal-back");
 const jsModalClose = document.querySelectorAll(".js-modal-close");
-const focusables = Array.from(
-  modal.querySelectorAll("button, a, input, textarea")
-);
 
 // Empêche la propagation des événements de clic
 const stopPropagation = (e) => e.stopPropagation();
@@ -42,47 +40,26 @@ const closeModal = function (e) {
   resetAddPictureModal();
 };
 
-// Focus dans la Modal
-const focusInModal = function (e) {
-  e.preventDefault();
-  let index = focusables.findIndex((f) => f === modal.querySelector(":focus"));
-  if (e.shiftKey === true) {
-    index--;
-  } else {
-    index++;
-  }
-  if (index >= focusables.length) {
-    index = 0;
-  }
-  if (index < 0) {
-    index = focusables.length - 1;
-  }
-  focusables[index].focus();
-  console.log(index);
-};
-
-// Ecouteurs d'évènements
+// ----- Ecouteurs d'évènements ----- //
 
 // Ouverture
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".js-modal").forEach((openButton) => {
     openButton.addEventListener("click", openModal);
   });
-});
-
-// Fermeture
-jsModalClose.forEach((closeButton) => {
-  closeButton.addEventListener("click", closeModal);
-});
-
-// Clavier
-window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal(e);
-  }
-  if (e.key === "Tab" && modal !== null) {
-    focusInModal(e);
-  }
+  // Fermeture
+  jsModalClose.forEach((closeButton) => {
+    closeButton.addEventListener("click", closeModal);
+  });
+  // Clavier
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" || e.key === "Esc") {
+      closeModal(e);
+    }
+    if (e.key === "Tab" && modal !== null) {
+      focusInModal(e);
+    }
+  });
 });
 
 // Empêche la propagation des événements de clic
@@ -95,6 +72,7 @@ modalAddWork.addEventListener("click", stopPropagation);
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+// Création de la galerie d'images dans la modal
 export function modalGallery(data) {
   const galleryContent = document.querySelector(".modalGalleryContent");
   const fragment = document.createDocumentFragment();
@@ -130,6 +108,7 @@ export function modalGallery(data) {
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+// Gestion de la suppression de projet depuis la modal
 export async function modalDeleteWork(trashId) {
   try {
     const works = Array.from(
@@ -145,7 +124,6 @@ export async function modalDeleteWork(trashId) {
     workGallery.remove();
     work.remove();
     const token = sessionStorage.getItem("token");
-    // Envoi de la requête DELETE à l'API pour la connexion
     const r = await fetch(`http://localhost:5678/api/works/${trashId}`, {
       method: "DELETE",
       headers: {
@@ -163,6 +141,7 @@ export async function modalDeleteWork(trashId) {
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+// Permet de switcher entre les deux modals (ajout de photo et galerie)
 modalBack.addEventListener("click", modalSwitch);
 modal2.addEventListener("click", modalSwitch);
 
@@ -183,6 +162,7 @@ function modalSwitch(e) {
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
+/// Récupération des catégories via l'API
 export const selectCategory = function (data) {
   const select = document.getElementById("category");
   const fragment = document.createDocumentFragment();

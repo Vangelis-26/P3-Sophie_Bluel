@@ -4,26 +4,20 @@
 ///                                                               ///
 /////////////////////////////////////////////////////////////////////
 
-/**
- * Gestion de la soumission du formulaire de connexion.
- * @param {Event} e - L'événement de soumission du formulaire.
- */
-
+//Gestion de la connexion de l'utilisateur
 const login = document.getElementById("login-form");
 
 login.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Récupération des éléments d'entrée email et password
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");
 
   try {
-    // Envoi de la requête POST à l'API pour la connexion
     const r = await fetch("http://localhost:5678/api/users/login", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json", // Indique que le corps de la requête est au format JSON
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         email: emailInput.value,

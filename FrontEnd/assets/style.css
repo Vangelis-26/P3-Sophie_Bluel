@@ -366,15 +366,16 @@ footer nav ul {
 }
 
 .modalGalleryContent img {
-	width: auto;
+	object-fit: cover;
+	width: 76px;
 	height: 102.5px;
 }
 
 .js-modal-back {
 	font-size: 1.1rem;
 	position: absolute;
-	right: 65.5rem;
-	top: 8rem;
+	left: 1rem;
+	top: 1rem;
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -382,8 +383,8 @@ footer nav ul {
 
 .js-modal-close {
 	font-size: 1.1rem;
-	position: relative;
-	left: 17.7rem;
+	position: absolute;
+	right: 1rem;
 	top: 1rem;
 	background: none;
 	border: none;
@@ -444,6 +445,10 @@ h3 {
 }
 
 .modalGalleryContent figure {
+	position: relative;
+}
+
+.modalWrapper {
 	position: relative;
 }
 
