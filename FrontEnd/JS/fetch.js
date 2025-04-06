@@ -1,7 +1,4 @@
-/**
- * Récupération des données depuis l'API
- * @return {Promise}
- */
+// Récupération des données depuis l'API
 export async function fetchData(url) {
   const r = await fetch(url);
   if (!r.ok) {
